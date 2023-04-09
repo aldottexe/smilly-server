@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>sendPost</title>
+   </head>
+   <body>
+      <button id="b">post</button>
+
+      <script>
+         document.getElementById("b").addEventListener("click", send);
+         function send() {
+            console.log("send called");
+            fetch("/", {
+               method: "POST",
+               headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+               },
+               body: JSON.stringify({
+                  a: "hello",
+                  b: "world",
+               }),
+            })
+               .then(response => response.json())
+               .then(response => console.log(JSON.stringify(response)));
+         }
+      </script>
+   </body>
+</html>
